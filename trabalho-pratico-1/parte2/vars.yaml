@@ -1,0 +1,6 @@
+asn: 65001
+router_id: 1.1.1.1
+neighbor:
+  ip: 10.0.0.2
+  asn: 65002
+network: 192.168.1.0/24

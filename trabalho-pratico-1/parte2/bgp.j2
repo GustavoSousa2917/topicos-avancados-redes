@@ -1,0 +1,8 @@
+router bgp {{ asn }}
+ bgp router-id {{ router_id }}
+ neighbor {{ neighbor.ip }} remote-as {{ neighbor.asn }}
+ !
+ address-family ipv4 unicast
+  network {{ network }}
+ exit-address-family
+!

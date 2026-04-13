@@ -1,0 +1,27 @@
+stages:
+  - validate
+  - artifact
+  - run
+
+valida_yaml:
+  stage: validate
+  image: python:3.9
+  script:
+    - pip install yamllint
+    - yamllint trabalho-pratico-1/parte1/config.yaml
+
+geracao_artifact:
+  stage: artifact
+  script:
+    - echo "Pipeline executado com sucesso e artifact gerado." > trabalho-pratico-1/parte1/output.txt
+  artifacts:
+    paths:
+      - trabalho-pratico-1/parte1/output.txt
+
+executa_script_python:
+  stage: run
+  image: python:3.9
+  script:
+    - pip install pyyaml
+    - cd trabalho-pratico-1/parte1/
+    - python script.py

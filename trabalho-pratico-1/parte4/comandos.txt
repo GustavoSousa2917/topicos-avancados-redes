@@ -1,0 +1,21 @@
+# 1. Iniciar a topologia Mininet
+sudo python3 topologia.py
+
+# 2. Abrir terminais individuais para r1 e r2 usando o prompt do Mininet
+mininet> xterm r1 r2
+
+# 3. No terminal do 'r1' (e analogamente no r2, ajustando as configs), iniciar o FRR
+/usr/lib/frr/frr start
+
+# 4. Copiar a configuração gerada na Parte 2 para o r1
+cat bgpd.conf > /etc/frr/bgpd.conf
+
+# 5. Reiniciar a aplicação do bgpd para ler o arquivo novo
+/usr/lib/frr/frr restart
+
+# 6. Validar a vizinhança BGP usando vtysh no terminal do roteador
+vtysh -c "show ip bgp summary"
+vtysh -c "show ip route"
+
+# 7. Validar a conectividade pingando o IP vizinho
+ping 10.0.0.2
